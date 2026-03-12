@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEOCAVA Engenharia e Projetos | Consultoria Mineral, Ambiental e Florestal</title>
+    <meta name="description" content="GEOCAVA Engenharia e Projetos - Consultoria especializada em Engenharia de Minas, Meio Ambiente e Gestão Florestal. Soluções técnicas para regularização e licenciamento.">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #8CB04E;
+            --dark-green: #6B8E3B;
+            --light-green: #A8C96F;
+            --terracota: #B85C38;
+            --dark-terracota: #8B4513;
+            --text-dark: #2C3E2D;
+            --text-light: #5A6B5C;
+            --bg-light: #F8FAF5;
+            --white: #FFFFFF;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.5rem 5%;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--terracota) 0%, var(--dark-terracota) 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-icon::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            top: 5px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--dark-green);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--terracota);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--terracota);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--dark-green);
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: rgba(184, 92, 56, 0.1);
+            border-radius: 50%;
+            animation: float 25s infinite ease-in-out reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.1); }
+        }
+
+        .hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 2;
+            max-width: 900px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            background: var(--white);
+            border-radius: 20px;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-logo::before {
+            content: '▼';
+            font-size: 80px;
+            color: var(--terracota);
+            position: absolute;
+            top: 20px;
+        }
+
+        .hero-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-top: 40px;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-areas {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .hero-area-tag {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid rgba(255,255,255,0.3);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .hero-area-tag:hover {
+            background: var(--white);
+            color: var(--dark-green);
+            transform: translateY(-3px);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            color: var(--white);
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        /* Sections General */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--dark-green);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--terracota);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 1.5rem auto 0;
+        }
+
+        /* Welcome Section */
+        .welcome {
+            background: var(--bg-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%238CB04E" stroke-width="0.5" opacity="0.1"/></svg>');
+            background-size: 200px;
+            opacity: 0.3;
+        }
+
+        .welcome-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-text h3 {
+            font-size: 2rem;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .welcome-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .welcome-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: rotate(2deg);
+            transition: transform 0.3s;
+        }
+
+        .welcome-image:hover {
+            transform: rotate(0deg) scale(1.02);
+        }
+
+        .welcome-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .welcome-badge {
+            position: absolute;
+            bottom: -20px;
+            left: -20px;
+            background: var(--terracota);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            font-weight: 700;
+            text-align: center;
+        }
+
+        .welcome-badge span {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--white);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .about-card {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-green);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+
+        .about-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-card:hover::before {
+            opacity: 1;
+        }
+
+        .about-card:hover * {
+            color: var(--white);
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-card:hover .about-icon {
+            background: var(--white);
+            color: var(--dark-green);
+        }
+
+        .about-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-green);
+            color: var(--white);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .about-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--dark-green);
+        }
+
+        .about-card p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .team-highlight {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .team-highlight h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .team-member {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .team-member h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .crea-badge {
+            display: inline-block;
+            background: var(--terracota);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Services Section */
+        .services {
+            background: var(--bg-light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary-green);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--dark-green) 100%);
+            color: var(--white);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            color: var(--dark-green);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .service-features li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--terracota);
+            font-weight: bold;
+        }
+
+        /* Tech Section */
+        .tech {
+            background: var(--white);
+            position: relative;
+        }
+
+        .tech-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .tech-text h3 {
+            font-size: 2rem;
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-text p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .tech-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .tech-item:hover {
+            border-color: var(--terracota);
+            transform: translateY(-5px);
+        }
+
+        .tech-item i {
+            font-size: 2.5rem;
+            color: var(--terracota);
+            margin-bottom: 1rem;
+        }
+
+        .tech-item h4 {
+            font-size: 1rem;
+            color: var(--dark-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-item p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .tech-visual {
+            position: relative;
+            height: 500px;
+            background: linear-gradient(135deg, var(--bg-light) 0%, #e8f0e0 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .drone-animation {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            animation: hover 3s ease-in-out infinite;
+        }
+
+        @keyframes hover {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .drone-body {
+            width: 120px;
+            height: 40px;
+            background: var(--dark-green);
+            border-radius: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .drone-arm {
+            position: absolute;
+            width: 80px;
+            height: 6px;
+            background: var(--terracota);
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        .drone-arm:nth-child(1) { transform: translate(-50%, -50%) rotate(0deg); }
+        .drone-arm:nth-child(2) { transform: translate(-50%, -50%) rotate(90deg); }
+
+        .propeller {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 3px solid var(--terracota);
+            border-radius: 50%;
+            top: -12px;
+            left: -12px;
+            animation: spin 0.2s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .scan-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--terracota);
+            box-shadow: 0 0 10px var(--terracota);
+            animation: scan 2s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { bottom: 0; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { bottom: 100%; opacity: 0; }
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .contact .section-header h2 {
+            color: var(--white);
+        }
+
+        .contact .section-header h2::after {
+            background: var(--terracota);
+        }
+
+        .contact .section-header p {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--terracota);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-details h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-details p, .contact-details a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .contact-details a:hover {
+            color: var(--white);
+            text-decoration: underline;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            color: var(--text-dark);
+        }
+
+        .contact-form h3 {
+            color: var(--dark-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--terracota) 0%, var(--dark-terracota) 100%);
+            color: var(--white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(184, 92, 56, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--primary-green);
+        }
+
+        .footer-text {
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .welcome-content,
+            .tech-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-areas {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            section {
+                padding: 4rem 5%;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .team-members {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Animations on scroll */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"></div>
+                <span class="logo-text">GEOCAVA</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#tecnologia">Tecnologia</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <div class="mobile-menu" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <div class="hero-logo">
+                <div class="hero-logo-text">GEO</div>
+            </div>
+            <h1>GEOCAVA Engenharia e Projetos</h1>
+            <p class="hero-subtitle">Excelência em Consultoria Mineral, Ambiental e Florestal</p>
+            <div class="hero-areas">
+                <div class="hero-area-tag">Mineral</div>
+                <div class="hero-area-tag">Ambiental</div>
+                <div class="hero-area-tag">Florestal</div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Welcome Section -->
+    <section class="welcome" id="boas-vindas">
+        <div class="welcome-content">
+            <div class="welcome-text fade-in">
+                <h3>Boas Vindas</h3>
+                <p>É com grande satisfação que expressamos nossa profunda gratidão pela escolha de nosso escritório, a <strong>Geocava Engenharia e Projetos</strong>.</p>
+                <p>Estamos honrados com a oportunidade de colaborar e nos dedicaremos integralmente para que todas as suas expectativas sejam não apenas alcançadas, mas superadas.</p>
+                <p>Caso surjam quaisquer questionamentos ou necessite de auxílio, não hesite em nos contatar. Agradecemos, desde já, pela confiança depositada em nossos serviços.</p>
+            </div>
+            <div class="welcome-image fade-in">
+                <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&auto=format&fit=crop" alt="Parceria de negócios">
+                <div class="welcome-badge">
+                    <span>+50</span>
+                    Projetos Entregues
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="section-header fade-in">
+            <h2>Sobre Nós</h2>
+            <p>A Geocava Engenharia e Projetos se dedica a entregar resultados, guiada sempre pela ética, responsabilidade e respeito aos seus clientes.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <h3>Equipe Multidisciplinar</h3>
+                <p>Contamos com Engenheiros de Minas, Engenheiros Florestais e profissionais de áreas afins, garantindo uma visão completa e técnica para cada projeto.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Reconhecimento Nacional</h3>
+                <p>Com reconhecimento pela excelência de nossos serviços, operamos em todo o território brasileiro, minimizando riscos e impulsionando o crescimento.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3>Parceria Estratégica</h3>
+                <p>Com abordagem inovadora, somos uma verdadeira parceira na busca por resultados, com atuação precisa, técnica e adaptada a cada cliente.</p>
+            </div>
+        </div>
+
+        <div class="team-highlight fade-in">
+            <h3>Nossa Equipe Técnica</h3>
+            <p>Profissionais altamente qualificados e registrados nos conselhos competentes</p>
+            <div class="team-members">
+                <div class="team-member">
+                    <h4>Sr. Cayck Breno Batista</h4>
+                    <p>Engenheiro de Minas</p>
+                    <span class="crea-badge">CREA nº 247.743/D</span>
+                </div>
+                <div class="team-member">
+                    <h4>Sr. Rayk Félix Batista</h4>
+                    <p>Engenheiro de Minas</p>
+                    <span class="crea-badge">CREA nº 226.991/D</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="section-header fade-in">
+            <h2>Áreas de Atuação</h2>
+            <p>Soluções completas em Engenharia de Minas, Gestão Ambiental e Assessoria Corporativa</p>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3>Engenharia de Minas</h3>
+                </div>
+                <p>Atuação com soluções que proporcionam regular às diretrizes normativas e burocráticas atinentes ao setor em todos os Regimes de Aproveitamento Mineral.</p>
+                <ul class="service-features">
+                    <li>Pesquisa mineral e avaliação técnica/econômica</li>
+                    <li>Obtensão de concessão/portaria de Lavra</li>
+                    <li>Acompanhamento de extração e operações unitárias</li>
+                    <li>Plano de fechamento de mina</li>
+                    <li>Regularização de jazidas de cascalho e areia</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Ambiental</h3>
+                </div>
+                <p>Oferecemos consultoria ambiental especializada, auxiliando na elaboração de todos os estudos e documentos necessários para obter licenciamentos junto aos órgãos reguladores.</p>
+                <ul class="service-features">
+                    <li>Licenciamento de obras públicas</li>
+                    <li>Regularização de passivos ambientais</li>
+                    <li>Modernização da gestão de resíduos (SINIR)</li>
+                    <li>Estudos de impacto ambiental</li>
+                    <li>Gestão de recursos hídricos (ANA)</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Gestão de Processos Minerários</h3>
+                </div>
+                <p>Assessoria empresarial junto à Agência Nacional de Mineração (ANM), considerando as especificidades de forma abrangente e assertiva.</p>
+                <ul class="service-features">
+                    <li>Cumprimento de exigências e controles de prazos</li>
+                    <li>Monitoramento SIGMINE e Plataforma ANM</li>
+                    <li>Controle de arrecadação de CFEM (royalties)</li>
+                    <li>Análise e implementação de medidas preventivas</li>
+                    <li>Auditoria para maximização de receitas</li>
+                </ul>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-header">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Assessoria Corporativa</h3>
+                </div>
+                <p>Nossa equipe trabalha em prol de planejamentos estratégicos, buscando novas oportunidades de mercado e equalização dos interesses dos nossos clientes.</p>
+                <ul class="service-features">
+                    <li>Planejamento estratégico de longo prazo</li>
+                    <li>Busca e aquisição de novas áreas em potencial</li>
+                    <li>Ampliação do Network empresarial</li>
+                    <li>Representação junto ao Ministério Público</li>
+                    <li>Consultoria para captação de recursos e convênios</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="tech" id="tecnologia">
+        <div class="section-header fade-in">
+            <h2>Tecnologia e Inovação</h2>
+            <p>Ferramentas de alta precisão para geoprocessamento e monitoramento</p>
+        </div>
+
+        <div class="tech-content">
+            <div class="tech-text fade-in">
+                <h3>Tecnologia e Transparência</h3>
+                <p>Nossa consultoria atua diretamente dentro dos sistemas nacionais e estaduais, garantindo 100% de conformidade digital, evitando bloqueios de verbas e multas automáticas.</p>
+                <p>Utilizamos ferramentas próprias para gerar relatórios de alta precisão e monitoramento em tempo real.</p>
+                
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h4>QGIS / ArcGIS</h4>
+                        <p>Mapas temáticos ambientais e geoprocessamento</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-satellite"></i>
+                        <h4>Google Earth Engine</h4>
+                        <p>Análise histórica de desmatamento</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-helicopter"></i>
+                        <h4>Drones</h4>
+                        <p>Vistorias em locais de difícil acesso</p>
+                    </div>
+                    <div class="tech-item">
+                        <i class="fas fa-qrcode"></i>
+                        <h4>Sistemas Digitais</h4>
+                        <p>Licenciamento com QR Code e georreferenciamento</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-visual fade-in">
+                <div class="drone-animation">
+                    <div class="drone-arm">
+                        <div class="propeller"></div>
+                    </div>
+                    <div class="drone-arm">
+                        <div class="propeller"></div>
+                    </div>
+                    <div class="drone-body"></div>
+                </div>
+                <div class="scan-line"></div>
+                <div style="position: absolute; bottom: 2rem; text-align: center; color: var(--text-light);">
+                    <p style="font-weight: 600; color: var(--dark-green);">Monitoramento Aéreo</p>
+                    <p style="font-size: 0.9rem;">Topos de morros, áreas de invasão, focos de risco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="section-header fade-in">
+            <h2>Contato</h2>
+            <p>Entre em contato conosco para uma proposta personalizada</p>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-info fade-in">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Telefone / WhatsApp</h4>
+                        <a href="tel:+5538999680211">(38) 9 9968-0211</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>E-mail</h4>
+                        <a href="mailto:cayckengminas@gmail.com">cayckengminas@gmail.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>CNPJ</h4>
+                        <p>42.307.962/0001-38</p>
+                    </div>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Endereço</h4>
+                        <p>Praça Joaquim Capuchinho, nº 254, Centro<br>
+                        Indaiabira/MG, CEP – 39.536-000</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form fade-in">
+                <h3>Solicite uma Proposta</h3>
+                <form onsubmit="event.preventDefault(); alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');">
+                    <div class="form-group">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone">
+                    </div>
+                    <div class="form-group">
+                        <label for="servico">Serviço de interesse</label>
+                        <select id="servico" name="servico">
+                            <option value="">Selecione uma opção</option>
+                            <option value="minas">Engenharia de Minas</option>
+                            <option value="ambiental">Consultoria Ambiental</option>
+                            <option value="processos">Gestão de Processos</option>
+                            <option value="corporativa">Assessoria Corporativa</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Descreva sua necessidade..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">GEOCAVA</div>
+            <p class="footer-text">Engenharia, Mineração e Meio Ambiente</p>
+            <div class="footer-bottom">
+                <p>&copy; 2025 GEOCAVA Engenharia e Projetos LTDA. Todos os direitos reservados.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">CNPJ: 42.307.962/0001-38 | Indaiabira/MG</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = '0';
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'white';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.padding = '2rem';
+            navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        }
+
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would normally send to a server
+            console.log('Form data:', data);
+            
+            // Show success message
+            alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
